@@ -9,7 +9,7 @@ RUN apt-get update && \
         git cron && \
     pecl install memcached && \
     docker-php-ext-configure gd --with-jpeg && \
-    docker-php-ext-install zip gd exif intl pdo_pgsql pdo_mysql bcmath && \
+    docker-php-ext-install zip gd exif intl pdo_pgsql pdo_mysql bcmath sockets && \
     docker-php-ext-enable memcached && \
     apt-get remove --yes libmagickwand-dev libmemcached-dev postgresql-server-dev-11 libzip-dev && \
     apt-get autoremove --yes && \
