@@ -2,7 +2,7 @@ FROM php:7.4-apache
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        libzip-dev \
+        libzip-dev libzip4 \
         libmagickwand-dev libmagickwand-6.q16-6 libmagickwand-6.q16hdri-6 \
         libmemcached-dev libmemcached11 libmemcachedutil2 \
         postgresql-server-dev-11 libpq5 \
