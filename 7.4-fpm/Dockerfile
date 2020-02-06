@@ -9,12 +9,9 @@ RUN apt-get update && \
         git cron && \
     pecl install memcached && \
     pecl install imagick && \
-    pecl install apcu && \
-    pecl install apcu_bc && \
     docker-php-ext-configure gd --with-jpeg && \
     docker-php-ext-install zip gd exif intl pdo_pgsql pdo_mysql bcmath && \
-    docker-php-ext-enable memcached imagick apcu && \
-    echo 'extension=apc.so' >> /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini && \
+    docker-php-ext-enable memcached imagick && \
     apt-get remove --yes libmagickwand-dev libmemcached-dev postgresql-server-dev-11 libzip-dev && \
     apt-get autoremove --yes && \
     rm -rf /var/lib/apt/lists/* && \
