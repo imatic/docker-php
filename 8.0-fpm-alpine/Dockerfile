@@ -1,9 +1,18 @@
-FROM php:8-fpm-alpine
+FROM php:8.0-fpm-alpine
 
-RUN apk add build-base zlib-dev git zip postgresql-dev
-
-# Install PHP extensions
-RUN docker-php-ext-install pdo pdo_pgsql
-
-# Install composer 2
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --2
+RUN apk add --no-cache \
+        icu-dev icu \
+        ghostscript \
+        libzip-dev libzip \
+        imagemagick-dev imagemagick libpng-dev libpng jpeg-dev jpeg \
+        libmemcached-dev libmemcached \
+        postgresql-dev libpq \
+        autoconf gcc alpine-sdk \
+        git && \
+    pecl install memcached && \
+    pecl install imagick && \
+    docker-php-ext-configure gd --with-jpeg && \
+    docker-php-ext-install zip gd exif intl pdo_pgsql pdo_mysql bcmath && \
+    docker-php-ext-enable memcached imagick && \
+    apk del imagemagick-dev libmemcached-dev postgresql-dev libzip-dev autoconf gcc alpine-sdk libpng-dev jpeg-dev icu-dev && \
+    curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
