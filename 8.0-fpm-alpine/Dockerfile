@@ -16,4 +16,5 @@ RUN apk add --no-cache \
     docker-php-ext-enable memcached && \
 #    docker-php-ext-enable imagick && \
     apk del imagemagick-dev libmemcached-dev postgresql-dev libzip-dev autoconf gcc alpine-sdk libpng-dev jpeg-dev icu-dev && \
+    mkdir -p /usr/local/apache2/htdocs && ln -s /var/www/html/public/ /usr/local/apache2/htdocs/public && \
     curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

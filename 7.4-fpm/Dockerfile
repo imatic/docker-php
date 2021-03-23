@@ -16,4 +16,5 @@ RUN apt-get update && \
     apt-get remove --yes libmagickwand-dev libmemcached-dev postgresql-server-dev-11 libzip-dev && \
     apt-get autoremove --yes && \
     rm -rf /var/lib/apt/lists/* && \
+    mkdir -p /usr/local/apache2/htdocs && ln -s /var/www/html/public/ /usr/local/apache2/htdocs/public && \
     curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
